@@ -10,8 +10,9 @@ var TimerActions$Pomodoro = require("./TimerActions.bs.js");
 
 function App(Props) {
   var match = React.useReducer(State$Pomodoro.reducer, State$Pomodoro.initialState);
-  var dispatch = match[1];
   var state = match[0];
+  var seconds = state.seconds;
+  var dispatch = match[1];
   React.useEffect((function () {
           var timer = setInterval((function (param) {
                   return Curry._1(dispatch, /* Tick */3);
@@ -23,8 +24,12 @@ function App(Props) {
         }), []);
   return React.createElement("div", {
               className: "container"
-            }, React.createElement(Header$Pomodoro.make, {}), React.createElement(Timer$Pomodoro.make, {
-                  seconds: state.seconds
+            }, React.createElement(Header$Pomodoro.make, {
+                  seconds: seconds,
+                  currentPhase: state.currentPhase,
+                  dispatch: dispatch
+                }), React.createElement(Timer$Pomodoro.make, {
+                  seconds: seconds
                 }), React.createElement(TimerActions$Pomodoro.make, {
                   dispatch: dispatch,
                   isTicking: state.isTicking
