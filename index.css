@@ -1,0 +1,9 @@
+.container {
+    margin: auto;
+    width: 60%; 
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}

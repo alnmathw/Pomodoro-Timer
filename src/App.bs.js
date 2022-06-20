@@ -5,6 +5,7 @@ var React = require("react");
 var State$Pomodoro = require("./State.bs.js");
 var Timer$Pomodoro = require("./Timer.bs.js");
 var EditTime$Pomodoro = require("./EditTime.bs.js");
+var TimerActions$Pomodoro = require("./TimerActions.bs.js");
 
 function App(Props) {
   var match = React.useReducer(State$Pomodoro.reducer, State$Pomodoro.initialState);
@@ -19,25 +20,18 @@ function App(Props) {
                     
                   });
         }), []);
-  return React.createElement("div", undefined, React.createElement("button", {
+  return React.createElement("div", {
+              className: "container"
+            }, React.createElement("button", {
                   onClick: (function (param) {
                       return Curry._1(dispatch, /* TogglePhase */4);
                     })
                 }, "Switch timer"), React.createElement(Timer$Pomodoro.make, {
                   seconds: state.seconds
-                }), React.createElement("button", {
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, /* Stop */1);
-                    })
-                }, "Stop"), React.createElement("button", {
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, /* Start */0);
-                    })
-                }, "Start"), React.createElement("button", {
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, /* Reset */2);
-                    })
-                }, "Reset"), React.createElement(EditTime$Pomodoro.make, {
+                }), React.createElement(TimerActions$Pomodoro.make, {
+                  dispatch: dispatch,
+                  isTicking: state.isTicking
+                }), React.createElement(EditTime$Pomodoro.make, {
                   phase: "Work",
                   value: state.workTime,
                   onChange: (function (e) {
