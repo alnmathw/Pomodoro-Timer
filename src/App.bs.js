@@ -3,6 +3,7 @@
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var State$Pomodoro = require("./State.bs.js");
+var Timer$Pomodoro = require("./Timer.bs.js");
 
 function App(Props) {
   var match = React.useReducer(State$Pomodoro.reducer, State$Pomodoro.initialState);
@@ -16,7 +17,9 @@ function App(Props) {
                     
                   });
         }), []);
-  return React.createElement("div", undefined, React.createElement("div", undefined, String(match[0].seconds)), React.createElement("button", {
+  return React.createElement("div", undefined, React.createElement(Timer$Pomodoro.make, {
+                  seconds: match[0].seconds
+                }), React.createElement("button", {
                   onClick: (function (param) {
                       return Curry._1(dispatch, /* Stop */1);
                     })

@@ -9,9 +9,7 @@ let make = () => {
     }); 
 
     <div>
-        <div>
-            {React.string(string_of_int(state.seconds))}
-        </div>
+        <Timer seconds = {state.seconds} />
         <button onClick={_ => dispatch(Stop)}> {React.string("Stop")} </button>
         <button onClick={_ => dispatch(Start)}> {React.string("Start")} </button>
         <button onClick={_ => dispatch(Reset)}> {React.string("Reset")} </button>
