@@ -9,9 +9,7 @@ let make = () => {
   });
 
   <div className="container">
-    <button onClick={_ => dispatch(TogglePhase)}>
-      {React.string("Switch timer")}
-    </button>
+    <Header />
     <Timer seconds={state.seconds} />
     <TimerActions dispatch isTicking={state.isTicking} />
     <EditTime

@@ -4,6 +4,7 @@ var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var State$Pomodoro = require("./State.bs.js");
 var Timer$Pomodoro = require("./Timer.bs.js");
+var Header$Pomodoro = require("./Header.bs.js");
 var EditTime$Pomodoro = require("./EditTime.bs.js");
 var TimerActions$Pomodoro = require("./TimerActions.bs.js");
 
@@ -22,11 +23,7 @@ function App(Props) {
         }), []);
   return React.createElement("div", {
               className: "container"
-            }, React.createElement("button", {
-                  onClick: (function (param) {
-                      return Curry._1(dispatch, /* TogglePhase */4);
-                    })
-                }, "Switch timer"), React.createElement(Timer$Pomodoro.make, {
+            }, React.createElement(Header$Pomodoro.make, {}), React.createElement(Timer$Pomodoro.make, {
                   seconds: state.seconds
                 }), React.createElement(TimerActions$Pomodoro.make, {
                   dispatch: dispatch,
