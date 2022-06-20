@@ -2,7 +2,7 @@ open State;
 [@react.component]
 let make = () => {
   let (state, dispatch) = React.useReducer(reducer, initialState);
-  let {seconds, currentPhase, isTicking} = state; 
+  let {seconds, currentPhase, isTicking} = state;
 
   React.useEffect0(() => {
     let timer = Js.Global.setInterval(() => dispatch(Tick), 1000);
@@ -11,7 +11,15 @@ let make = () => {
 
   <div className="container">
     <Header seconds dispatch currentPhase />
-    <Timer seconds />
+    <Timer
+      seconds
+      maxTime={
+        switch (currentPhase) {
+        | Work => state.workTime * 60
+        | Play => state.playTime * 60
+        }
+      }
+    />
     <TimerActions dispatch isTicking />
     <EditTime
       phase="Work"

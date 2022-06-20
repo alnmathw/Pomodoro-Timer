@@ -11,6 +11,7 @@ var TimerActions$Pomodoro = require("./TimerActions.bs.js");
 function App(Props) {
   var match = React.useReducer(State$Pomodoro.reducer, State$Pomodoro.initialState);
   var state = match[0];
+  var currentPhase = state.currentPhase;
   var seconds = state.seconds;
   var dispatch = match[1];
   React.useEffect((function () {
@@ -26,10 +27,11 @@ function App(Props) {
               className: "container"
             }, React.createElement(Header$Pomodoro.make, {
                   seconds: seconds,
-                  currentPhase: state.currentPhase,
+                  currentPhase: currentPhase,
                   dispatch: dispatch
                 }), React.createElement(Timer$Pomodoro.make, {
-                  seconds: seconds
+                  seconds: seconds,
+                  maxTime: currentPhase ? Math.imul(state.playTime, 60) : Math.imul(state.workTime, 60)
                 }), React.createElement(TimerActions$Pomodoro.make, {
                   dispatch: dispatch,
                   isTicking: state.isTicking
